@@ -59,26 +59,30 @@ export default async function PostPage({ params }: Props) {
           ← 所有文章
         </Link>
 
-        {/* 标题区 */}
-        <header className="mb-10">
-          <h1 className="font-playfair text-3xl sm:text-4xl text-text-primary leading-tight mb-4">
-            {post.frontmatter.title}
-          </h1>
+        {/* 标题区（hideMeta 时仅显示标题） */}
+        {post.frontmatter.hideMeta ? (
+          <header className="mb-10" />
+        ) : (
+          <header className="mb-10">
+            <h1 className="font-playfair text-3xl sm:text-4xl text-text-primary leading-tight mb-4">
+              {post.frontmatter.title}
+            </h1>
 
-          <div className="flex flex-wrap items-center gap-3 text-sm text-text-muted">
-            <time>{date}</time>
-            <span className="w-1 h-1 rounded-full bg-text-muted" />
-            <span>{post.readingTime} 分钟阅读</span>
-          </div>
-
-          {post.frontmatter.tags && post.frontmatter.tags.length > 0 && (
-            <div className="flex flex-wrap gap-1.5 mt-4">
-              {post.frontmatter.tags.map((tag) => (
-                <Tag key={tag}>{tag}</Tag>
-              ))}
+            <div className="flex flex-wrap items-center gap-3 text-sm text-text-muted">
+              <time>{date}</time>
+              <span className="w-1 h-1 rounded-full bg-text-muted" />
+              <span>{post.readingTime} 分钟阅读</span>
             </div>
-          )}
-        </header>
+
+            {post.frontmatter.tags && post.frontmatter.tags.length > 0 && (
+              <div className="flex flex-wrap gap-1.5 mt-4">
+                {post.frontmatter.tags.map((tag) => (
+                  <Tag key={tag}>{tag}</Tag>
+                ))}
+              </div>
+            )}
+          </header>
+        )}
 
         {/* 正文 */}
         <Prose>{content}</Prose>

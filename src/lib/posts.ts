@@ -10,6 +10,7 @@ export interface PostFrontmatter {
   date: string;
   tags?: string[];
   featured?: boolean;
+  hideMeta?: boolean;
 }
 
 /** 文章完整类型 */
@@ -61,6 +62,7 @@ export async function getAllPosts(): Promise<Post[]> {
         date: data.date || new Date().toISOString().split("T")[0],
         tags: data.tags || [],
         featured: data.featured || false,
+        hideMeta: data.hideMeta || false,
       },
       readingTime: Math.ceil(stats.minutes),
       content,
