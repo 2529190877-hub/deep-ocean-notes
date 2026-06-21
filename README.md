@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 深海笔记 — 个人主页
 
-## Getting Started
+> 深海蓝主题 · 艺术氛围 · 内容驱动 · Next.js 16 + MDX
 
-First, run the development server:
+一个以内容为核心、深海蓝为基调的个人主页网站。通过极简的信息架构和克制的视觉动效，营造沉静、高级的阅读体验。
+
+## 技术栈
+
+- **框架**: Next.js 16 (App Router)
+- **内容**: MDX (`next-mdx-remote`)
+- **样式**: Tailwind CSS v4
+- **动效**: Framer Motion
+- **代码高亮**: `rehype-pretty-code`
+- **部署**: Vercel
+
+## 页面
+
+| 路由 | 说明 |
+|------|------|
+| `/` | 首页 — Hero + 粒子背景 + 精选文章 |
+| `/posts` | 文章列表 — 按年月分组时间线 |
+| `/posts/[slug]` | 文章详情 — MDX 渲染 + 代码高亮 |
+| `/about` | 关于页 |
+
+## 本地开发
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+访问 http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 写文章
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+在 `src/content/` 下创建 `.mdx` 文件：
 
-## Learn More
+```mdx
+---
+title: '文章标题'
+description: '简短摘要'
+date: '2026-06-21'
+tags: ['技术', 'Web']
+featured: true
+---
 
-To learn more about Next.js, take a look at the following resources:
+文章正文（Markdown + 可选 React 组件）
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`git push` 后 Vercel 自动部署。
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 构建
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run build
+```
